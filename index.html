@@ -6,64 +6,63 @@
     <title>Review Vaan In Sky</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Efek hover untuk interaksi bintang */
-        .star-btn:hover ~ .star-btn svg { fill: #D1D5DB; /* Abu-abu */ }
-        .star-btn:hover svg, .star-btn-group:hover .star-btn:hover svg ~ svg { fill: #FBBF24; /* Kuning */ }
+        .star-btn:hover ~ .star-btn svg { fill: #D1D5DB; }
+        .star-btn:hover svg, .star-btn-group:hover .star-btn:hover svg ~ svg { fill: #FBBF24; }
     </style>
+    
+    <!-- Logika JavaScript Pengganti Server Flask -->
+    <script>
+        function prosesRating(bintang) {
+            // Link Google Maps
+            const googleLink = "https://search.google.com/local/writereview?placeid=ChIJJ_CrnMz7vi0RUmzbH9C-jM8";
+            // Link WhatsApp Admin
+            const waLink = "https://wa.me/6281234567890?text=Halo%20Admin%20Vaan%20In%20Sky,%20saya%20ingin%20menyampaikan%20masukan%20terkait%20kunjungan%20saya%20hari%20ini:";
+            
+            if (bintang >= 4) {
+                window.location.href = googleLink; 
+            } else {
+                window.location.href = waLink; 
+            }
+        }
+    </script>
 </head>
 <body class="bg-white min-h-screen flex flex-col items-center justify-center p-6 text-center">
 
-    <!-- Filter SVG untuk Garis Pinggir Logo (Tidak terlihat di layar, hanya sebagai mesin efek) -->
+    <!-- Filter SVG untuk Garis Pinggir Logo -->
     <svg width="0" height="0" style="position: absolute;">
       <filter id="garis-pinggir">
         <feMorphology in="SourceAlpha" operator="dilate" radius="1.5" result="tebal"/>
         <feFlood flood-color="#1B3679" result="warna"/>
         <feComposite in="warna" in2="tebal" operator="in" result="garis"/>
-        <feMerge>
-          <feMergeNode in="garis"/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
+        <feMerge><feMergeNode in="garis"/><feMergeNode in="SourceGraphic"/></feMerge>
       </filter>
     </svg>
 
-  <!-- Logo Cafe dengan Efek Stroke -->
-    <img src="logo.png" 
-         alt="Logo Vaan In Sky" 
-         class="h-16 md:h-20 w-auto object-contain mb-8"
-         style="filter: url(#garis-pinggir);"> <!-- Ini kode pemanggil stroke-nya -->
+    <!-- Logo dengan src statis -->
+    <img src="logo.png" alt="Logo Vaan In Sky" class="h-16 md:h-20 w-auto object-contain mb-8" style="filter: url(#garis-pinggir);">
 
-    <!-- Teks Sambutan -->
     <h1 class="text-2xl font-bold text-gray-800 mb-2">Terima kasih atas kunjungan Anda!</h1>
     <p class="text-gray-500 mb-8">Bagaimana pengalaman Anda di Vaan In Sky hari ini?</p>
 
-    <!-- 5 Bintang Interaktif -->
-    <div class="flex space-x-2 star-btn-group mb-12 flex-row-reverse justify-center">
-        <!-- Bintang 5 -->
-        <a href="/proses-rating?bintang=5" class="star-btn transition-transform hover:scale-110 peer">
+    <!-- 5 Bintang Interaktif (Terkoneksi ke JavaScript) -->
+    <div class="flex space-x-2 star-btn-group mb-12 flex-row-reverse justify-center cursor-pointer">
+        <div onclick="prosesRating(5)" class="star-btn transition-transform hover:scale-110 peer">
             <svg class="w-12 h-12 text-gray-300 hover:text-yellow-400 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-        </a>
-        <!-- Bintang 4 -->
-        <a href="/proses-rating?bintang=4" class="star-btn transition-transform hover:scale-110 peer">
+        </div>
+        <div onclick="prosesRating(4)" class="star-btn transition-transform hover:scale-110 peer">
             <svg class="w-12 h-12 text-gray-300 hover:text-yellow-400 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-        </a>
-        <!-- Bintang 3 -->
-        <a href="/proses-rating?bintang=3" class="star-btn transition-transform hover:scale-110 peer">
+        </div>
+        <div onclick="prosesRating(3)" class="star-btn transition-transform hover:scale-110 peer">
             <svg class="w-12 h-12 text-gray-300 hover:text-yellow-400 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-        </a>
-        <!-- Bintang 2 -->
-        <a href="/proses-rating?bintang=2" class="star-btn transition-transform hover:scale-110 peer">
+        </div>
+        <div onclick="prosesRating(2)" class="star-btn transition-transform hover:scale-110 peer">
             <svg class="w-12 h-12 text-gray-300 hover:text-yellow-400 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-        </a>
-        <!-- Bintang 1 -->
-        <a href="/proses-rating?bintang=1" class="star-btn transition-transform hover:scale-110 peer">
+        </div>
+        <div onclick="prosesRating(1)" class="star-btn transition-transform hover:scale-110 peer">
             <svg class="w-12 h-12 text-gray-300 hover:text-yellow-400 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-        </a>
+        </div>
     </div>
 
-    <!-- Tombol Bantuan -->
-    <!-- Catatan: Untuk prototipe ini belum bisa klik buka WA karena link WA_ADMIN_LINK ada di Flask (app.py), 
-         jadi kita buat link statis sementara untuk tampilan -->
     <a href="https://wa.me/6281234567890" target="_blank" class="text-sm text-blue-600 underline">Ada kendala? Hubungi Manajer Kami</a>
-
 </body>
 </html>
