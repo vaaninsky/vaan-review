@@ -8,15 +8,21 @@
     <style>
         .star-btn:hover ~ .star-btn svg { fill: #D1D5DB; }
         .star-btn:hover svg, .star-btn-group:hover .star-btn:hover svg ~ svg { fill: #FBBF24; }
+        
+        /* Pengaturan Background Gambar bg1.jpeg dengan lapisan gelap 60% */
+        body {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('bg1.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
     </style>
     
-    <!-- Logika JavaScript Pengganti Server Flask -->
     <script>
         function prosesRating(bintang) {
-            // Link Google Maps
             const googleLink = "https://search.google.com/local/writereview?placeid=ChIJJ_CrnMz7vi0RUmzbH9C-jM8";
-            // Link WhatsApp Admin
-          const waLink = "https://wa.me/6281222020922?text=Halo%20Vaan%20In%20Sky,%20izinkan%20saya%20menyampaikan%20tanggapan%20dan%20evaluasi%20terkait%20pengalaman%20saya%20selama%20berkunjung%20hari%20ini.";
+            const waLink = "https://wa.me/6281222020922?text=Halo%20Vaan%20In%20Sky,%20izinkan%20saya%20menyampaikan%20tanggapan%20dan%20evaluasi%20terkait%20pengalaman%20saya%20selama%20berkunjung%20hari%20ini.";
             
             if (bintang >= 4) {
                 window.location.href = googleLink; 
@@ -26,9 +32,9 @@
         }
     </script>
 </head>
-<body class="bg-white min-h-screen flex flex-col items-center justify-center p-6 text-center">
+<!-- Hapus class bg-white agar background gambar bisa muncul -->
+<body class="min-h-screen flex flex-col items-center justify-center p-6 text-center">
 
-    <!-- Filter SVG untuk Garis Pinggir Logo -->
     <svg width="0" height="0" style="position: absolute;">
       <filter id="garis-pinggir">
         <feMorphology in="SourceAlpha" operator="dilate" radius="1.5" result="tebal"/>
@@ -38,31 +44,32 @@
       </filter>
     </svg>
 
-    <!-- Logo dengan src statis -->
     <img src="logo.png" alt="Logo Vaan In Sky" class="h-16 md:h-20 w-auto object-contain mb-8" style="filter: url(#garis-pinggir);">
 
-    <h1 class="text-2xl font-bold text-gray-800 mb-2">Terima kasih atas kunjungan Anda!</h1>
-    <p class="text-gray-500 mb-8">Bagaimana pengalaman Anda di Vaan In Sky hari ini?</p>
+    <!-- Warna teks diubah menjadi putih (text-white) dan abu-abu terang (text-gray-200) -->
+    <h1 class="text-2xl md:text-3xl font-bold text-white mb-2 drop-shadow-md">Terima kasih atas kunjungan Anda!</h1>
+    <p class="text-gray-200 mb-8 drop-shadow-md">Bagaimana pengalaman Anda di Vaan In Sky hari ini?</p>
 
-    <!-- 5 Bintang Interaktif (Terkoneksi ke JavaScript) -->
+    <!-- Bintang ulasan -->
     <div class="flex space-x-2 star-btn-group mb-12 flex-row-reverse justify-center cursor-pointer">
         <div onclick="prosesRating(5)" class="star-btn transition-transform hover:scale-110 peer">
-            <svg class="w-12 h-12 text-gray-300 hover:text-yellow-400 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="w-12 h-12 text-gray-400 hover:text-yellow-400 fill-current drop-shadow-lg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
         </div>
         <div onclick="prosesRating(4)" class="star-btn transition-transform hover:scale-110 peer">
-            <svg class="w-12 h-12 text-gray-300 hover:text-yellow-400 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="w-12 h-12 text-gray-400 hover:text-yellow-400 fill-current drop-shadow-lg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
         </div>
         <div onclick="prosesRating(3)" class="star-btn transition-transform hover:scale-110 peer">
-            <svg class="w-12 h-12 text-gray-300 hover:text-yellow-400 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="w-12 h-12 text-gray-400 hover:text-yellow-400 fill-current drop-shadow-lg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
         </div>
         <div onclick="prosesRating(2)" class="star-btn transition-transform hover:scale-110 peer">
-            <svg class="w-12 h-12 text-gray-300 hover:text-yellow-400 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="w-12 h-12 text-gray-400 hover:text-yellow-400 fill-current drop-shadow-lg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
         </div>
         <div onclick="prosesRating(1)" class="star-btn transition-transform hover:scale-110 peer">
-            <svg class="w-12 h-12 text-gray-300 hover:text-yellow-400 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="w-12 h-12 text-gray-400 hover:text-yellow-400 fill-current drop-shadow-lg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
         </div>
     </div>
 
-    <a href="https://wa.me/6281222020922" target="_blank" class="text-sm text-blue-600 underline">Ada kendala? Hubungi Manajer Kami</a>
+    <!-- Link diubah warnanya agar lebih terang -->
+    <a href="https://wa.me/6281222020922" target="_blank" class="text-sm text-blue-300 hover:text-white underline drop-shadow-md">Ada kendala? Hubungi Manajer Kami</a>
 </body>
 </html>
