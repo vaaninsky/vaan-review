@@ -8,15 +8,7 @@
     <style>
         .star-btn:hover ~ .star-btn svg { fill: #D1D5DB; }
         .star-btn:hover svg, .star-btn-group:hover .star-btn:hover svg ~ svg { fill: #FBBF24; }
-        
-        /* Pengaturan Background Gambar bg1.jpeg dengan lapisan gelap 60% */
-        body {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('bg2.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-        }
+        /* CSS Background Image lama dihapus */
     </style>
     
     <script>
@@ -32,8 +24,17 @@
         }
     </script>
 </head>
-<!-- Hapus class bg-white agar background gambar bisa muncul -->
-<body class="min-h-screen flex flex-col items-center justify-center p-6 text-center">
+<body class="min-h-screen flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
+
+    <!-- Video Background (Berada di paling belakang) -->
+    <!-- Atribut playsinline, autoplay, muted, dan loop WAJIB ada agar video bisa jalan otomatis di HP -->
+   <!-- Video Background (Berada di paling belakang) -->
+    <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover -z-20">
+        <source src="bg-video.mp4" type="video/mp4">
+    </video>
+
+    <!-- Lapisan Gelap (Overlay) 60% agar teks tetap terbaca di atas video -->
+    <div class="absolute top-0 left-0 w-full h-full bg-black/60 -z-10"></div>
 
     <svg width="0" height="0" style="position: absolute;">
       <filter id="garis-pinggir">
@@ -44,14 +45,13 @@
       </filter>
     </svg>
 
-    <img src="logo.png" alt="Logo Vaan In Sky" class="h-16 md:h-20 w-auto object-contain mb-8" style="filter: url(#garis-pinggir);">
+    <img src="logo.png" alt="Logo Vaan In Sky" class="h-16 md:h-20 w-auto object-contain mb-8 z-10" style="filter: url(#garis-pinggir);">
 
-    <!-- Warna teks diubah menjadi putih (text-white) dan abu-abu terang (text-gray-200) -->
-    <h1 class="text-2xl md:text-3xl font-bold text-white mb-2 drop-shadow-md">Terima kasih atas kunjungan Anda!</h1>
-    <p class="text-gray-200 mb-8 drop-shadow-md">Bagaimana pengalaman Anda di Vaan In Sky hari ini?</p>
+    <h1 class="text-2xl md:text-3xl font-bold text-white mb-2 drop-shadow-md z-10">Terima kasih atas kunjungan Anda!</h1>
+    <p class="text-gray-200 mb-8 drop-shadow-md z-10">Bagaimana pengalaman Anda di Vaan In Sky hari ini?</p>
 
     <!-- Bintang ulasan -->
-    <div class="flex space-x-2 star-btn-group mb-12 flex-row-reverse justify-center cursor-pointer">
+    <div class="flex space-x-2 star-btn-group mb-12 flex-row-reverse justify-center cursor-pointer z-10">
         <div onclick="prosesRating(5)" class="star-btn transition-transform hover:scale-110 peer">
             <svg class="w-12 h-12 text-gray-400 hover:text-yellow-400 fill-current drop-shadow-lg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
         </div>
@@ -69,7 +69,6 @@
         </div>
     </div>
 
-    <!-- Link diubah warnanya agar lebih terang -->
-    <a href="https://wa.me/6281222020922" target="_blank" class="text-sm text-blue-300 hover:text-white underline drop-shadow-md">Ada kendala? Hubungi Manajer Kami</a>
+    <a href="https://wa.me/6281222020922" target="_blank" class="text-sm text-blue-300 hover:text-white underline drop-shadow-md z-10">Ada kendala? Hubungi Manajer Kami</a>
 </body>
 </html>
